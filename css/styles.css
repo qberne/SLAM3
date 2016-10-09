@@ -1,0 +1,269 @@
+#commentaire {
+   resize: none;
+   height: 100px;
+}
+
+#com td {
+    vertical-align: top;
+}
+
+label.error {
+    background: none;
+    font-weight: bold;
+    color: red;
+    margin-left: 20px;
+}
+
+html, body {
+	margin : 0px;
+	padding : 0px;
+	font-family : 'Archivo Narrow', sans-serif;
+	font-size : 1em;
+	font-weight : 400;
+	background-color : #efefef;
+}
+
+section#global {
+	position : absolute;
+	width : 960px;
+	left : 50%;
+	margin-left : -480px;
+	margin-top : 10px;
+	background-color : #fff;
+}
+/* Pied de page */
+#pied {
+	color: #E6A948;
+}
+/* Pied de page */
+#pied {
+	padding: 20px 30px;
+	font-size: .95em;
+}
+
+#pied p {
+	margin: .5em 0;
+}
+
+a:link,
+a:visited{
+	color : #30C0FF;
+	text-decoration : underline;
+}
+a:hover{
+	text-decoration : none;
+}
+
+form {
+	float : left;
+	width : 824px;
+	margin-left : 58px;
+        margin-bottom: 20px;
+	padding : 10px;
+	padding-bottom: 20px;
+	color : #666;
+	background : #efefef;
+}
+
+fieldset {
+	border : none;
+	padding : 24px;
+}
+legend {
+	padding-left : 1em;
+	padding-right : 1em;
+	font-family : 'Overlock SC', cursive;
+	font-size : 1.2em;
+	font-weight : 400;
+	color : #333;
+	border-bottom : 1px solid #333;
+}
+
+form div {
+	margin-bottom : 10px;
+	padding : 5px 10px;
+}
+label {
+        padding-left: 5px;
+        padding-right: 5px;
+	display : inline-block;
+	line-height : 25 px;
+	width : 70 px;
+	padding-right : 10 px;
+	text-align : right ;
+	font-weight : 400;
+	color : #fff;
+	-webkit-border-radius : 15px;
+	-moz-border-radius : 15px;
+	border-radius : 15px;
+	-webkit-border-top-right-radius : 0px;
+	-moz-border-radius-topright : 0px;
+	border-top-right-radius : 0px;
+	-webkit-border-bottom-right-radius : 0px;
+	-moz-border-radius-bottomright : 0px;
+	border-bottom-right-radius : 0px;	
+	background-color : #595959;
+	background: -webkit-gradient(
+		linear,
+		left top, left bottom,
+		from(#000),
+		to(#595959)
+	);
+	background: -webkit-linear-gradient(
+		top, 
+		#000,
+		#595959
+	);	
+	background: -moz-linear-gradient(
+		top, 
+		#000,
+		#595959
+	);	
+	background: -o-linear-gradient(
+		top, 
+		#000,
+		#595959
+	);	
+	background: linear-gradient(
+		top, 
+		#000,
+		#595959
+	);	
+
+}
+
+input[type=text],
+input[type=password],
+input[type=number],
+textarea{
+	height : 25 px;
+	width : 200 px;
+	padding-left : 10 px;
+	font-family : 'Archivo Narrow', sans-serif;
+	font-size : 1em;
+	-webkit-border-radius : 15px;
+	-moz-border-radius : 15px;
+	border-radius : 15px;
+	-webkit-border-top-left-radius : 0px;
+	-moz-border-radius-topleft : 0px;
+	border-top-left-radius : 0px;
+	-webkit-border-bottom-left-radius : 0px;
+	-moz-border-radius-bottomleft : 0px;
+	border-bottom-left-radius : 0px;	
+	border : 1px solid #BEBEBE;
+}
+
+input[type=text]:focus{
+	border-color : #30C0FF;
+	outline : none;
+}
+
+input[type=submit],
+input[type=reset]
+{
+	margin-left : 50px;
+	padding : 2px 20px;
+	color : #fff;
+	cursor:pointer;
+	font-family : 'Overlock SC', cursive;
+	font-size : 1em;
+	font-weight : 400;
+	text-decoration : none;
+	text-transform : uppercase;
+	background: #595959;
+
+	background: -webkit-gradient(
+		linear,
+		left top, left bottom,
+		from(#000),
+		to(#595959)
+	);
+	background: -webkit-linear-gradient(
+		top, 
+		#000,
+		#595959
+	);	
+	background: -moz-linear-gradient(
+		top, 
+		#000,
+		#595959
+	);	
+	background: -o-linear-gradient(
+		top, 
+		#000,
+		#595959
+	);	
+	background: linear-gradient(
+		top, 
+		#000,
+		#595959
+	);	
+	border : 1px solid #124860;
+	-webkit-border-radius : 15px;
+	-moz-border-radius : 15px;
+	border-radius : 15px;
+}
+
+input[type=submit]:hover,
+input[type=submit]:active,
+input[type=submit]:focus,
+input[type=reset]:hover,
+input[type=reset]:active,
+input[type=reset]:focus
+{
+	background: #1088FF;
+
+	background: -webkit-gradient(
+		linear,
+		left top, left bottom,
+		from(#1088FF),
+		to(#0677FF)
+	);
+	background: -webkit-linear-gradient(
+		top, 
+		#1088FF,
+		#0677FF
+	);	
+	background: -moz-linear-gradient(
+		top, 
+		#1088FF,
+		#0677FF
+	);	
+	background: -o-linear-gradient(
+		top, 
+		#1088FF,
+		#0677FF
+	);	
+	background: linear-gradient(
+		top, 
+		#1088FF,
+		#0677FF
+	);	
+	text-decoration : none;
+}
+
+#ajouter_enfant legend,
+#ajouter_enfant div {
+	display:none;	
+}
+
+#ajouter_enfant .afficher{
+	display:block;
+}
+
+#ajouter_enfant .masquer{
+	display:none;
+}
+
+#ajouter_enfant:target .afficher{
+	display:none;
+}
+
+#ajouter_enfant:target .masquer{
+	display:block;
+}
+
+#ajouter_enfant:target legend,
+#ajouter_enfant:target div{
+	display:block;
+}
