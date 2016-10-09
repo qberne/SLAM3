@@ -50,6 +50,14 @@ $(function() {
         },
         heureMax: "Ce champ est requis",
         commentaire: "Ce champ est requis"
+      },
+        errorPlacement: function (error, element) {
+        if (element.attr("type") == "radio") {
+           error.insertAfter($('#error'));
+        }
+        else{
+            error.insertAfter(element);
+        }
       }
     });
 

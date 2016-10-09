@@ -1,3 +1,13 @@
+.checkbox-grid li {
+    display: block;
+    float: left;
+    width: 25%;
+}
+.checkbox-grid {
+    padding-left: 10px;
+    padding-bottom: 1px;
+}
+
 #commentaire {
    resize: none;
    height: 100px;
@@ -83,7 +93,7 @@ form div {
 	margin-bottom : 10px;
 	padding : 5px 10px;
 }
-label {
+.formLabel {
         padding-left: 5px;
         padding-right: 5px;
 	display : inline-block;

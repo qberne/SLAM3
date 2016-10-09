@@ -14,7 +14,13 @@ class coursModele {
         // ajoute un cours dans la BDD
         $nb = 0;
         if ($this->obj) {
-            $req = $this->obj->prepare("INSERT INTO COURS(ID_NIVEAU, DATE_COURS, HEURE_COURS, NOMBRE_PLACES_COURS, COMMENTAIRE_COURS) VALUES (:niveau, :date, :heure, :nombre, :commentaires);");
+            
+            /* req sans prepare pour test
+            $req = 'INSERT INTO COURS(ID_NIVEAU, DATE_COURS, HEURE_COURS, NOMBRE_PLACES_COURS, COMMENTAIRE_COURS) VALUES (' . $niveau . ', STR_TO_DATE(\''. $date . '\', \'%d/%m/%Y\'), STR_TO_DATE(\'' . $heure . '\', \'%H : %i\'), ' .$nombrePlacesMax . ', \'' . $commentaires . '\');';
+            $this->obj->query($req);
+            */
+            
+            $req = $this->obj->prepare('INSERT INTO COURS(ID_NIVEAU, DATE_COURS, HEURE_COURS, NOMBRE_PLACES_COURS, COMMENTAIRE_COURS) VALUES (:niveau, STR_TO_DATE(:date, \'%d/%m/%Y\'), STR_TO_DATE(:heure, \'%H : %i\'), :nombre, :commentaires);');
             $nb = $req->execute(array(
                 'niveau' => $niveau,
                 'date' => $date,

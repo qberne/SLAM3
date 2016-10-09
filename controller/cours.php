@@ -7,9 +7,8 @@ $modele = new coursModele();
 
 try {
     // récupération des infos saisies nom et prenom
-    $date = date("Y-m-d", strtotime($_POST['datepicker']));
     //$heure = date("h:i", strtotime($_POST['timepicker']));
-    $modele->add($_POST['rb'], $date, 'dfsd', $_POST['heureMax'], $_POST['commentaire']);
+    $modele->add($_POST['rb'], $_POST['datepicker'], $_POST['timepicker'], $_POST['heureMax'], $_POST['commentaire']);
 } catch ( PDOException $pdoe ) {
     echo "ERREUR ! : <br/>" . $pdoe->getMessage ();
 }
