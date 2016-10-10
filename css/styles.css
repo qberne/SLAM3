@@ -1,3 +1,10 @@
+#tableauConsultation {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
 .checkbox-grid li {
     display: block;
     float: left;

@@ -1,6 +1,6 @@
 <?php
 
-include_once('../class/page_base.class.php');
+include_once('../class/autoload.php');
 
 $pageInitiale = new page_base("TP2 EX1 Formulaire");
 

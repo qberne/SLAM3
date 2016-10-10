@@ -23,6 +23,10 @@ $(function() {
     $.validator.addMethod( "heureFR", function( value, element ) {
 	return this.optional( element ) || /^([0-9]|0[0-9]|1[0-9]|2[0-3]) : [0-5][0-9]$/.test( value );
     }, $.validator.messages.date );
+    
+    $.validator.addMethod( "telFR", function( value, element ) {
+	return this.optional( element ) || /^(0|\+33)[1-9]([-. ]?[0-9]{2}){4}$/.test( value );
+    }, $.validator.messages.date );
 
     $("#formCours").validate({
       rules: {
@@ -60,5 +64,80 @@ $(function() {
         }
       }
     });
-
+    
+    $("#formParents").validate({
+      rules: {
+        nom: "required",
+        email: {
+            required : true,
+            email: true
+        },
+        mdp: {
+            required: true,
+            minlength: 8
+        },
+        mdpC: {
+            equalTo: "#mdp"
+        },
+        prenom: "required",
+        age: {
+            required: true,
+            min: 5,
+            max: 17
+        },
+        datepicker: {
+            required: true,
+            dateFR: true
+        },
+        sexe: "required",
+        tel: {
+            required: true,
+            telFR: true
+        },
+        competent: "required"
+      },
+      messages: {
+        nom: "Ce champ est requis",
+        email: {
+          required: "Ce champ est requis",
+          email: "Cet email n\'est pas valide"
+        },
+        mdp: {
+            required: "Ce champ est requis",
+            minlength: "Le mot de passe doit comporter au moins 8 caractères"
+        },
+        mdpC: {
+            equalTo: "Les mots de passes ne correspondent pas"
+        },
+        prenom: "Ce champ est requis",
+        age: {
+            required: "Ce champ est requis",
+            min: "L'âge minimal est 5 ans",
+            max: "L'âge maximal est 17 ans"
+        },
+        datepicker: {
+            required: "Ce champ est requis",
+            dateFR: "La date n'est pas correcte"
+        },
+        sexe: "Ce champ est requis",
+        tel: {
+            required: "Ce champ est requis",
+            telFR: "Ce numéro est incorrect"
+        },
+        competent: "Ce champ est requis"        
+      },
+        errorPlacement: function (error, element) {
+        if (element.attr("type") == "radio") {
+            if (element.attr("name") == "sexe") {
+                error.insertAfter($('#errorSexe'));
+            }
+            else if (element.attr("name") == "competent") {
+                 error.insertAfter($('#errorCompetent'));
+            }
+        }
+        else{
+            error.insertAfter(element);
+        }
+      }
+    });
 });

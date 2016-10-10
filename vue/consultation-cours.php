@@ -10,7 +10,7 @@ $listCours= $modele->getCours(); //requête via le modele
 
 $pageConsultation->corps = '<section>
 <label>Liste des cours :</label>
-<table border=1>
+<table border=1 id="tableauConsultation">
 <tr>
     <th>Niveau </th>
     <th>Date</th>

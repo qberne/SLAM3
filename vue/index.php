@@ -1,57 +1,58 @@
 <?php
 
-include_once('../class/page_base.class.php');
+include_once('../class/autoload.php');
 
 $pageInitiale = new page_base("TP2 EX1 Formulaire");
 
 $pageInitiale->corps = '
-<form method="post" action="#" name="formulaire" onsubmit="return valider(this)">
+<form method="post" action="#" name="formParents" id="formParents">
     <fieldset>
         <legend>Inscription</legend>
         <div>
-            <label for="nom">Votre Nom</label>
-            <input type="text" id="nom" name="nom" onblur ="verifChaine(this)"/>
+            <label for="nom" class="formLabel">Votre Nom</label>
+            <input type="text" name="nom"/>
         </div>
         <div>
-            <label for="email">Votre Email</label>
-            <input type="text" id="email" name="email" onblur="verifMail(this)"/>
-        </div><div>
-            <label for="mdp">Votre Mot de passe</label>
-            <input type="password" id="mdp" name="mdp" onblur ="verifMotdepasse(this)"/>
-        </div>
-    </fieldset>
-    <fieldset id="ajouter_enfant">
-        <legend>Ajouter un enfant</legend>
-        <div class="afficher"><a href="#ajouter_enfant">Ajouter un enfant</a></div>
-        <div class="masquer"><a href="#">Fermer</a></div>
-        <div>
-            <label for="prenom"> Prénom</label>
-            <input type="text" id="prenom" name="prenom" onblur ="verifChaine(this)" />
+            <label for="email" class="formLabel">Votre Email</label>
+            <input type="text" name="email"/>
         </div>
         <div>
-            <label for="age"> Age</label>
-            <input type="number" id="age" name="age" onblur ="verifAge(this)" min="5" max="17" />
+            <label for="mdp" class="formLabel">Confirmation</label>
+            <input type="password" id="mdp" name="mdp"/>
         </div>
         <div>
-            <label for="datepicker"> Crénau</label>
+            <label for="mdpC" class="formLabel">Mot de passe</label>
+            <input type="password" name="mdpC"/>
+        </div><br />
+        <legend>Ajouter un enfant</legend><br />
+        <div>
+            <label for="prenom" class="formLabel"> Prénom</label>
+            <input type="text" name="prenom" />
+        </div>
+        <div>
+            <label for="age" class="formLabel"> Age</label>
+            <input type="number" name="age" min="5" max="17" />
+        </div>
+        <div>
+            <label for="datepicker" class="formLabel"> Crénau</label>
             <input type="text" id="datepicker" name="datepicker">
         </div>
         <div>
-            <label for="sexe"> Sexe</label>
-            <input type="radio" name="sexeG" id="sexeG" value="homme">Garçon
-            <input type="radio" name="sexeF" id="sexeF" value="femme">Fille
+            <label for="sexe" class="formLabel"> Sexe</label>
+            Garçon<input type="radio" name="sexe" value="homme">
+            Fille<input type="radio" name="sexe" value="femme" id="errorSexe">
         </div>
         <div>
-            <label for="tel"> Téléphone</label>
-            <input type="tel" id="tel" name="tel" onblur ="verifTel(this)"/>
+            <label for="tel" class="formLabel"> Téléphone</label>
+            <input type="tel" name="tel"/>
         </div>
         <div>
-            <label for="competentD"> Niveau Tennis</label>
+            <label for="competent" class="formLabel"> Niveau Tennis</label>
         </div>
         <div>
-            Débutant<input type="checkbox" id="competentD" name="competentD" value="debutant"/>
-            Perfectionnement<input type="checkbox" id="competentP" name="competentP" value="perfectionnement"/>
-            Compétition<input type="checkbox" id="competentC" name="competentC" value="competition"/>
+            Débutant<input type="radio" name="competent" value="1"/>
+            Perfectionnement<input type="radio" name="competent" value="2"/>
+            Compétition<input type="radio" name="competent" value="3" id="errorCompetent"/>
         </div>
     </fieldset>
     <div>
