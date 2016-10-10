@@ -33,7 +33,6 @@ class coursModele {
     
     public function getCours()
     {
-        $nb = 0;
         if ($this->obj){
             return $this->obj->query('SELECT LIBELLE_NIVEAU, DATE_FORMAT(DATE_COURS, \'%d/%m/%Y\') AS "DATE_COURS", DATE_FORMAT(HEURE_COURS, \'%H:%i\') AS "HEURE_COURS", NOMBRE_PLACES_COURS, COMMENTAIRE_COURS FROM COURS C INNER JOIN NIVEAU N ON N.ID_NIVEAU = C.ID_NIVEAU;');
         }

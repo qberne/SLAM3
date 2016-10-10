@@ -1,18 +1,25 @@
 <?php
-/*
-require_once('../modele/cours.php');
+
+require_once('../modele/enfant.php');
+require_once('../modele/parent.php');
 require_once ('../class/connexion.class.php');
 
-$modele = new coursModele();
+$modeleE = new enfantModele();
+$modeleP = new parentModele();
 
 try {
-    // récupération des infos saisies nom et prenom
-    //$heure = date("h:i", strtotime($_POST['timepicker']));
-    $modele->add($_POST['rb'], $_POST['datepicker'], $_POST['timepicker'], $_POST['heureMax'], $_POST['commentaire']);
+    
+    $ID_PARENT = $modeleP->getID($_POST['email']); //recupération du parent inscrit
+    
+    if ($ID_PARENT == '') //si parent non inscrit
+    {
+        $ID_PARENT = $modeleP->add($_POST['nom'], $_POST['email'], md5($_POST['mdp'])); //ajout du parent et recup de l'id
+    }
+    
+    $modeleE->add($ID_PARENT, $_POST['competent'], $_POST['prenom'], $_POST['datepicker'], $_POST['sexe'], $_POST['tel']); //ajout de l'enfant
+    
 } catch ( PDOException $pdoe ) {
-    echo "ERREUR ! : <br/>" . $pdoe->getMessage ();
+    echo "ERREUR ! : <br/>" . $pdoe->getMessage();
 }
 // redirection vers autre page ou vers la même page
-header('Location: /slam3/vue/cours.php');*/
-
-//TODO
+//header('Location: /slam3/vue/index.php');

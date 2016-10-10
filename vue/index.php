@@ -5,7 +5,7 @@ include_once('../class/autoload.php');
 $pageInitiale = new page_base("TP2 EX1 Formulaire");
 
 $pageInitiale->corps = '
-<form method="post" action="#" name="formParents" id="formParents">
+<form method="post" action="../controller/inscription.php" name="formParents" id="formParents">
     <fieldset>
         <legend>Inscription</legend>
         <div>
@@ -30,17 +30,13 @@ $pageInitiale->corps = '
             <input type="text" name="prenom" />
         </div>
         <div>
-            <label for="age" class="formLabel"> Age</label>
-            <input type="number" name="age" min="5" max="17" />
-        </div>
-        <div>
-            <label for="datepicker" class="formLabel"> Crénau</label>
+            <label for="datepicker" class="formLabel"> Date de naissance</label>
             <input type="text" id="datepicker" name="datepicker">
         </div>
         <div>
             <label for="sexe" class="formLabel"> Sexe</label>
-            Garçon<input type="radio" name="sexe" value="homme">
-            Fille<input type="radio" name="sexe" value="femme" id="errorSexe">
+            Garçon<input type="radio" name="sexe" value="1">
+            Fille<input type="radio" name="sexe" value="0" id="errorSexe">
         </div>
         <div>
             <label for="tel" class="formLabel"> Téléphone</label>
