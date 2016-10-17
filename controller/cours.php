@@ -1,14 +1,14 @@
 <?php
 
 require_once('../modele/cours.php');
-require_once ('../class/connexion.class.php');
+require_once ('../class/autoload.php');
 
 $modele = new coursModele();
 
-try {
+try {    
     // récupération des infos saisies nom et prenom
     //$heure = date("h:i", strtotime($_POST['timepicker']));
-    $modele->add($_POST['rb'], $_POST['datepicker'], $_POST['timepicker'], $_POST['heureMax'], $_POST['commentaire']);
+    $modele->add($_POST['niveau'], $_POST['jour'], $_POST['heure'], $_POST['nombreMax'], $_POST['commentaire']);
 } catch ( PDOException $pdoe ) {
     echo "ERREUR ! : <br/>" . $pdoe->getMessage ();
 }

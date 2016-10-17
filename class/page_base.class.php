@@ -2,7 +2,7 @@
 class page_base {
 	
 	private $style=array('styles', 'wickedpicker');
-	private $script=array('TP2Ex2', 'datepicker-fr', 'jquery.validate.min', 'wickedpicker');
+	private $script=array('jquery.validate.min');
 	private $titre;
 	private $corps;
 	

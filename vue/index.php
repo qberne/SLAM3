@@ -1,8 +1,15 @@
 <?php
 
 include_once('../class/autoload.php');
+require_once('../modele/cours.php');
 
 $pageInitiale = new page_base("TP2 EX1 Formulaire");
+$pageInitiale->script = 'datepicker-fr';
+$pageInitiale->script = 'jsInscription';
+
+$modeleC = new coursModele();
+
+$listeNiv = $modeleC->getNiveaux();
 
 $pageInitiale->corps = '
 <form method="post" action="../controller/inscription.php" name="formParents" id="formParents">
@@ -43,12 +50,15 @@ $pageInitiale->corps = '
             <input type="tel" name="tel"/>
         </div>
         <div>
-            <label for="competent" class="formLabel"> Niveau Tennis</label>
-        </div>
-        <div>
-            Débutant<input type="radio" name="competent" value="1"/>
-            Perfectionnement<input type="radio" name="competent" value="2"/>
-            Compétition<input type="radio" name="competent" value="3" id="errorCompetent"/>
+            <label for="niveau">Niveau</label>
+            <select id="niveau" name="niveau">';
+
+foreach ($listeNiv as $niveau)
+{
+    $pageInitiale->corps .= '<option value="'.$niveau->ID_NIVEAU.'">'.$niveau->LIBELLE_NIVEAU.'</option>';
+}
+
+$pageInitiale->corps .=   '</select>
         </div>
     </fieldset>
     <div>
@@ -56,12 +66,5 @@ $pageInitiale->corps = '
         <input type="reset" value="Effacer" name="effacement" id="effacement" />
     </div>
 </form>';
-
-if (isset($_POST['nom']))
-{
-    $pageInitiale->corps .= 'Nom : ' . $_POST['nom'] . '<br />'
-            . 'Email : ' . $_POST['email'] . '<br />'
-            . 'Mdp : ' . md5($_POST['mdp']) . '<br />';
-}
 
 $pageInitiale->afficher();

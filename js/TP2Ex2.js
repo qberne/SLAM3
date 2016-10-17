@@ -7,14 +7,14 @@ $(function() {
     
     $.datepicker.setDefaults($.datepicker.regional["fr"]);
 
-    $("#datepicker").datepicker();
-
-    var options = {
-            twentyFour: true,  //Display 24 hour format, defaults to false
-            title: 'Heure' //The Wickedpicker's title,
-    };
-
-    $("#timepicker").wickedpicker(options).val('');
+    $("#datepicker").datepicker({
+        showOtherMonths: true,
+        selectOtherMonths: true,
+        changeMonth: true,
+        changeYear: true,
+        minDate: '-17Y',
+        maxDate: '-5Y',
+    });
     
     $.validator.addMethod( "dateFR", function( value, element ) {
 	return this.optional( element ) || /^(?:(?:31(\/|-|\.)(?:0?[13578]|1[02]))\1|(?:(?:29|30)(\/|-|\.)(?:0?[1,3-9]|1[0-2])\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29(\/|-|\.)0?2\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\d|2[0-8])(\/|-|\.)(?:(?:0?[1-9])|(?:1[0-2]))\4(?:(?:1[6-9]|[2-9]\d)?\d{2})$/.test( value );
@@ -54,14 +54,6 @@ $(function() {
         },
         heureMax: "Ce champ est requis",
         commentaire: "Ce champ est requis"
-      },
-        errorPlacement: function (error, element) {
-        if (element.attr("type") == "radio") {
-           error.insertAfter($('#error'));
-        }
-        else{
-            error.insertAfter(element);
-        }
       }
     });
     
@@ -140,4 +132,45 @@ $(function() {
         }
       }
     });
+    
+    $('#jours').change(function(){
+        var val = $(this).val(); // on récupère la valeur de la région
+        
+        console.log(val);
+        
+        if(val !== "") {
+            $('#heure').empty(); // on vide la liste des départements
+            
+            var filterDataRequest = $.ajax({
+                url: '../controller/recupHeure.php',
+                type: 'GET',
+                data: 'idJour='+ val, // on envoie $_GET['IdRegion']
+                dataType: 'json'
+            });
+            
+            filterDataRequest.done(function(data) {                
+                console.log("success");
+                console.log(data);                
+                $.each(data, function(index, value) {
+                    $('#heure').append('<option value="'+ value["ID_HORAIRE"] +'">'+ value["HEURE_DEBUT"] +'</option>');
+                });
+            });
+            
+            filterDataRequest.fail(function(jqXHR, textStatus) {
+                console.log( "error" );
+                if (jqXHR.status === 0){alert("Not connect.n Verify Network.");}
+                else if (jqXHR.status == 404){alert("Requested page not found.[404]");}
+                else if (jqXHR.status == 500){alert("Internal Server Error [500].");}
+                else if (textStatus === "parsererror"){alert("Requested JSON parsefailed.");}
+                else if (textStatus === "timeout"){alert("Time out error.");}
+                else if (textStatus === "abort"){alert("Ajax request aborted.");}
+                else{alert("Uncaught Error.n" + jqXHR.responseText);}
+            });
+            
+            filterDataRequest.always(function() {
+                console.log( "complete" );
+            });
+        }// fin du if val est vide
+    });
+    
 });

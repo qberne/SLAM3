@@ -13,7 +13,7 @@ $pageConsultation->corps = '<section>
 <table border=1 id="tableauConsultation">
 <tr>
     <th>Niveau </th>
-    <th>Date</th>
+    <th>Jour</th>
     <th>Heure</th>
     <th>Nombre de places</th>
     <th>Commentaire</th>
@@ -23,8 +23,8 @@ $pageConsultation->corps = '<section>
 foreach ($listCours as $C){
     $pageConsultation->corps .= '<tr>'
             . '<td>'.$C->LIBELLE_NIVEAU.'</td>'
-            . '<td>'.$C->DATE_COURS.'</td>'
-            . '<td>'.$C->HEURE_COURS.'</td>'
+            . '<td>'.$C->LIBELLE_JOUR.'</td>'
+            . '<td>'.$C->HEURE_DEBUT.'</td>'
             . '<td>'.$C->NOMBRE_PLACES_COURS.'</td>'
             . '<td>'.$C->COMMENTAIRE_COURS.'</td>'
             . '</tr>';

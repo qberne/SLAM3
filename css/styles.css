@@ -100,7 +100,7 @@ form div {
 	margin-bottom : 10px;
 	padding : 5px 10px;
 }
-.formLabel {
+label {
         padding-left: 5px;
         padding-right: 5px;
 	display : inline-block;
