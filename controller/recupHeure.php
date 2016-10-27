@@ -1,13 +1,13 @@
 <?php
 
 require_once ('../class/autoload.php');
-require_once('../modele/cours.php');
+require_once('../modele/horaire.php');
 
-$modele = new coursModele();
+$horaireModele = new horaireModele();
 
 if (isset($_GET['idJour'])){
 
-    $listeH = $modele->getHoraire($_GET['idJour']);
+    $listeH = $horaireModele->getHoraire($_GET['idJour']);
     
     $tabH = array();
     

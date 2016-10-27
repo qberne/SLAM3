@@ -11,7 +11,7 @@ class parentModele {
         }
     }
     
-    public function add($nom, $email, $mdp)
+    public function addParent($nom, $email, $mdp)
     {
         if ($this->obj) {
             
@@ -30,7 +30,7 @@ class parentModele {
         }
     }
     
-    public function getID($email){
+    public function getIDParent($email){
         if ($this->obj){
             
             $req = $this->obj->query('SELECT ID_PARENT AS "ID" FROM PARENT WHERE EMAIL_PARENT LIKE \''.$email.'\';'); //TODO : prepare

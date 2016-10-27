@@ -10,12 +10,10 @@ class coursModele {
             echo "<h1>probleme access BDD</h1>";
         }
     }
-    public function add($niveau, $idJour, $heureDebut, $nombrePlacesMax, $commentaires) {
+    public function addCours($niveau, $idHoraire, $nombrePlacesMax, $commentaires) {
         // ajoute un cours dans la BDD
         if ($this->obj) {
-            
-            $idHoraire = $this->getIdHoraire($idJour, $heureDebut);
-           
+         
             //req sans prepare pour test
             //'INSERT INTO COURS(ID_NIVEAU, ID_HORAIRE, NOMBRE_PLACES_COURS, COMMENTAIRE_COURS) VALUES (' . $niveau . ', '. $idHoraire . ', ' .$nombrePlacesMax . ', \'' . $commentaires . '\');';
             //$this->obj->exec($req);
@@ -40,41 +38,26 @@ class coursModele {
         }
     }
     
-    public function getJours()
+    public function getCoursEnfantDispo($idEnfant)
     {
         if ($this->obj){
-            return $this->obj->query('SELECT * FROM JOURS WHERE ID_JOUR IN (SELECT ID_JOUR FROM HORAIRE);');
+            return $this->obj->query('SELECT C.ID_COURS, LIBELLE_NIVEAU, LIBELLE_JOUR, HEURE_DEBUT, NOMBRE_PLACES_COURS, COMMENTAIRE_COURS '
+            .'FROM COURS C INNER JOIN NIVEAU N ON N.ID_NIVEAU = C.ID_NIVEAU '
+            .'INNER JOIN HORAIRE H ON C.ID_HORAIRE = H.ID_HORAIRE '
+            .'INNER JOIN JOURS J ON H.ID_JOUR = J.ID_JOUR '
+            .'WHERE C.ID_NIVEAU LIKE (SELECT ID_NIVEAU FROM ENFANT WHERE ID_ENFANT LIKE '.$idEnfant.') AND C.ID_COURS NOT IN (SELECT C.ID_COURS FROM COURS C INNER JOIN PARTICIPER P ON C.ID_COURS = P.ID_COURS WHERE ID_ENFANT LIKE '.$idEnfant.');');
         }
     }
     
-    public function getNiveaux()
+    public function getCoursEnfantInscrit($idEnfant)
     {
         if ($this->obj){
-            return $this->obj->query('SELECT * FROM NIVEAU;');
-        }    
-    }
-    
-    public function getHoraire($idJour)
-    {
-        if ($this->obj){
-            /*$req = $this->obj->prepare('SELECT ID_HORAIRE AS "ID", HEURE_DEBUT AS "HEURE" FROM HORAIRE WHERE ID_JOUR LIKE :idJour;');
-            return $req->execute(array('idJour' => $idJour));*/
-            
-            return $this->obj->query('SELECT HEURE_DEBUT FROM HORAIRE WHERE ID_JOUR LIKE '.$idJour);
+            return $this->obj->query('SELECT C.ID_COURS, LIBELLE_NIVEAU, LIBELLE_JOUR, HEURE_DEBUT, NOMBRE_PLACES_COURS, COMMENTAIRE_COURS '
+            .'FROM COURS C INNER JOIN NIVEAU N ON N.ID_NIVEAU = C.ID_NIVEAU '
+            .'INNER JOIN HORAIRE H ON C.ID_HORAIRE = H.ID_HORAIRE '
+            .'INNER JOIN JOURS J ON H.ID_JOUR = J.ID_JOUR '
+            .'INNER JOIN PARTICIPER P ON C.ID_COURS = P.ID_COURS '
+            .'WHERE P.ID_ENFANT LIKE '.$idEnfant.';');
         }
-    }
-    
-    public function getIdHoraire($idJour, $heureDebut)
-    {
-        if ($this->obj){
-            /*$req = $this->obj->prepare('SELECT ID_HORAIRE AS "ID", HEURE_DEBUT AS "HEURE" FROM HORAIRE WHERE ID_JOUR LIKE :idJour;');
-            return $req->execute(array('idJour' => $idJour));*/
-            
-            $tabIdHoraire = $this->obj->query('SELECT ID_HORAIRE FROM HORAIRE WHERE ID_JOUR LIKE '.$idJour.' AND HEURE_DEBUT LIKE \''.$heureDebut.'\';');
-            
-            foreach ($tabIdHoraire as $horaire) $idHoraire = $horaire->ID_HORAIRE;
-           
-        }
-        return $idHoraire;
     }
 }

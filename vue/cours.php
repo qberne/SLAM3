@@ -1,14 +1,18 @@
 <?php
 
 include_once('../class/autoload.php');
-require_once('../modele/cours.php');
+require_once('../modele/jours.php');
+require_once('../modele/niveaux.php');
 
 $pageInitiale = new page_base("TP2 EX1 Formulaire");
 $pageInitiale->script = 'jsCours';
 
-$modeleC = new coursModele ();
-$listeJ = $modeleC->getJours(); // récupération via le modèle des jours
-$listeNiv = $modeleC->getNiveaux();
+$joursModele = new joursModele();
+$niveauxModele = new niveauxModele();
+
+
+$listeJ = $joursModele->getJours(); // récupération via le modèle des jours
+$listeNiv = $niveauxModele->getNiveaux();
 
 $pageInitiale->corps = '
 <form method="post" action="../controller/cours.php" name="formCours" id="formCours">

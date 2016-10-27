@@ -1,15 +1,15 @@
 <?php
 
 include_once('../class/autoload.php');
-require_once('../modele/cours.php');
+require_once('../modele/niveaux.php');
 
 $pageInitiale = new page_base("TP2 EX1 Formulaire");
 $pageInitiale->script = 'datepicker-fr';
 $pageInitiale->script = 'jsInscription';
 
-$modeleC = new coursModele();
+$niveauxModele = new niveauxModele();
 
-$listeNiv = $modeleC->getNiveaux();
+$listeNiv = $niveauxModele->getNiveaux();
 
 $pageInitiale->corps = '
 <form method="post" action="../controller/inscription.php" name="formParents" id="formParents">
