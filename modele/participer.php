@@ -14,12 +14,22 @@ class participerModele {
     public function addParticipation($idCours, $idEnfant)
     {
         if ($this->obj){
-            $result = $this->obj->prepare('INSERT INTO PARTICIPER VALUES(:idCours, :idEnfant);');
-            $result->execute(array(
-                'idCours' => $idCours,
-                'idEnfant' => $idEnfant
-            ));
-        }    
+            
+            $placesDispo = false;
+            $req = $this->obj->query('SELECT NOMBRE_PLACES_COURS-COUNT(ID_ENFANT) AS "PLACES" FROM COURS C LEFT JOIN PARTICIPER P ON P.ID_COURS = C.ID_COURS WHERE C.ID_COURS LIKE '.$idCours.';');
+            foreach ($req as $tuple) if ($tuple->PLACES > 0) $placesDispo = true;
+            
+            if ($placesDispo)
+            {
+                $result = $this->obj->prepare('INSERT INTO PARTICIPER VALUES(:idCours, :idEnfant);');
+                $result->execute(array(
+                    'idCours' => $idCours,
+                    'idEnfant' => $idEnfant
+                ));
+                return true;
+            }
+            else return false;
+        }
     }
     
     public function delParticipation($idCours, $idEnfant)

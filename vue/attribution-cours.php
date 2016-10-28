@@ -20,7 +20,10 @@ foreach ($listEnfants as $enfant){
     $pageConsultation->corps .= '<option value="'.$enfant->ID_ENFANT.'">'.$enfant->PRENOM_ENFANT.'</option>';
 }
 
-$pageConsultation->corps .= '</select><br/>
+$pageConsultation->corps .= '</select><br /><br />
+    <div id="infoEnfant">
+    </div>
+    <br />
     <span id="coursDispo" class="row2">
     </span>
     <span id="coursInscrit" class="row2">

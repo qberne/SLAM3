@@ -45,4 +45,18 @@ class enfantModele {
         }
         return $req;
     }
+    
+    public function getEnfant($idEnfant)
+    {
+        if ($this->obj) {
+            
+            /* req sans prepare pour test
+            $req = 'INSERT INTO COURS(ID_NIVEAU, DATE_COURS, HEURE_COURS, NOMBRE_PLACES_COURS, COMMENTAIRE_COURS) VALUES (' . $niveau . ', STR_TO_DATE(\''. $date . '\', \'%d/%m/%Y\'), STR_TO_DATE(\'' . $heure . '\', \'%H : %i\'), ' .$nombrePlacesMax . ', \'' . $commentaires . '\');';
+            $this->obj->query($req);
+            */
+            
+            $req = $this->obj->query('SELECT PRENOM_ENFANT, DATE_FORMAT(DATE_ENFANT, \'%d/%m/%Y\') AS "DATE_NAISSANCE", SEXE_ENFANT, TEL_ENFANT, LIBELLE_NIVEAU FROM ENFANT E INNER JOIN NIVEAU N ON E.ID_NIVEAU = N.ID_NIVEAU WHERE ID_ENFANT LIKE '.$idEnfant.';');
+        }
+        return $req;
+    }
 }

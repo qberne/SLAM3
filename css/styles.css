@@ -15,6 +15,10 @@ img {
     margin-top: 20px;
 }
 
+#infoEnfant table {
+    text-align: left;
+}
+
 .checkbox-grid li {
     display: block;
     float: left;
