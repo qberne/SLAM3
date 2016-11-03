@@ -10,7 +10,7 @@ $enfantModele = new enfantModele();
 
 $listEnfants= $enfantModele->getEnfants(); //requête via le modele
 
-$pageConsultation->corps = '
+$pageConsultation->corps = '<form>
 <section>
     <label>Liste des enfants :</label>
     <select id="listEnfants">';
@@ -28,7 +28,7 @@ $pageConsultation->corps .= '</select><br /><br />
     </span>
     <span id="coursInscrit" class="row2">
     </span>
-</section>';
+</section></form>';
 
 $listEnfants->closeCursor (); // pour libérer la mémoire occupée par le résultat de la requête
 $listEnfants = null; // pour une autre exécution avec cette variable

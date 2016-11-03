@@ -8,16 +8,17 @@ $modele = new coursModele();
 
 $listCours= $modele->getCours(); //requête via le modele
 
-$pageConsultation->corps = '<section>
-<label>Liste des cours :</label>
-<table border=1 id="tableauConsultation">
-<tr>
-    <th>Niveau </th>
-    <th>Jour</th>
-    <th>Heure</th>
-    <th>Nombre de places</th>
-    <th>Commentaire</th>
-</tr>';
+$pageConsultation->corps = '
+<form>
+        <legend>Liste des cours</legend>
+            <table border=1 id="tableauConsultation">
+            <tr>
+                <th>Niveau </th>
+                <th>Jour</th>
+                <th>Heure</th>
+                <th>Nombre de places</th>
+                <th>Commentaire</th>
+            </tr>';
 //parcours du résultat de la requete
 
 foreach ($listCours as $C){
@@ -34,6 +35,6 @@ $listCours->closeCursor (); // pour libérer la mémoire occupée par le résult
 
 $listCours = null; // pour une autre exécution avec cette variable
 
-$pageConsultation->corps .= '</table></section>';
+$pageConsultation->corps .= '</table></section></form>';
 
 $pageConsultation->afficher ();

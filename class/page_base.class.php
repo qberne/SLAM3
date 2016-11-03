@@ -68,14 +68,16 @@ public function __get($propriete){
 	}
 	/******************************Gestion de l'entete **********************************************/
 	private function affiche_entete() {
-		echo '<header>BTS S.I.O (Services Informatiques aux Organisations)</header>';
-		echo '<h1>
-					<span>TP2 JavaScript Exercice 1</span>
-				</h1>
-				<p class="sous-titre">
-				<strong>TP2 Exercice 1 : exemple de soumission d’un formulaire</strong>
-				</p>
-				';
+		echo '<span id="title"><h1>TP JavaScript</h1></span>
+                     <nav>
+                        <ul>
+                           <li><a href="/slam3/vue/index.php">Inscription</a></li>
+                           <li><a href="/slam3/vue/consultation-cours.php">Consultation des cours</a></li>
+                           <li><a href="/slam3/vue/cours.php">Ajout de cours</a></li>
+                           <li><a href="/slam3/vue/attribution-cours.php">Attribution de cours</a></li>
+                        </ul>
+                     </nav>
+';
 		}
 	/******************************Gestion de l'entete **********************************************/
 	private function affiche_pied_page() {
