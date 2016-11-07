@@ -12,7 +12,7 @@ try {
     //$heure = date("h:i", strtotime($_POST['timepicker']));
     $idHoraire = $horaireModele->getIdHoraire($_POST['jour'], $_POST['heure']);
     
-    $coursModele->addCours($_POST['niveau'], $idHoraire, $_POST['nombreMax'], $_POST['commentaire']);
+    $coursModele->addCours($_POST['niveau'], $idHoraire, $_POST['nombreMax'], $_POST['commentaire'], $_POST['public']);
     
 } catch ( PDOException $pdoe ) {
     echo "ERREUR ! : <br/>" . $pdoe->getMessage ();

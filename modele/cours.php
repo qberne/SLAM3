@@ -10,7 +10,7 @@ class coursModele {
             echo "<h1>probleme access BDD</h1>";
         }
     }
-    public function addCours($niveau, $idHoraire, $nombrePlacesMax, $commentaires) {
+    public function addCours($niveau, $idHoraire, $nombrePlacesMax, $commentaires, $public) {
         // ajoute un cours dans la BDD
         if ($this->obj) {
          
@@ -19,22 +19,40 @@ class coursModele {
             //$this->obj->exec($req);
             
             
-            $req = $this->obj->prepare('INSERT INTO COURS(ID_NIVEAU, ID_HORAIRE, NOMBRE_PLACES_COURS, COMMENTAIRE_COURS) VALUES (:niveau, :idHoraire, :nombre, :commentaires);');
+            $req = $this->obj->prepare('INSERT INTO COURS(ID_NIVEAU, ID_HORAIRE, NOMBRE_PLACES_COURS, COMMENTAIRE_COURS, ID_PUBLIC) VALUES (:niveau, :idHoraire, :nombre, :commentaires, :public);');
             $nb = $req->execute(array(
                 'niveau' => $niveau,
                 'idHoraire' => $idHoraire,
                 'nombre' => $nombrePlacesMax,
-                'commentaires' => $commentaires));
+                'commentaires' => $commentaires,
+                'public' => $public));
             
         }
         return $nb;
  // si nb =1 alors l'insertion s est bien passee
     }
     
-    public function getCours()
+    public function getCours($public, $niveau)
     {
         if ($this->obj){
-            return $this->obj->query('SELECT LIBELLE_NIVEAU, LIBELLE_JOUR, HEURE_DEBUT, NOMBRE_PLACES_COURS, COMMENTAIRE_COURS FROM COURS C INNER JOIN NIVEAU N ON N.ID_NIVEAU = C.ID_NIVEAU INNER JOIN HORAIRE H ON C.ID_HORAIRE = H.ID_HORAIRE INNER JOIN JOURS J ON H.ID_JOUR = J.ID_JOUR;');
+            
+            $req = 'SELECT LIBELLE_NIVEAU, LIBELLE_JOUR, HEURE_DEBUT, NOMBRE_PLACES_COURS, COMMENTAIRE_COURS, LIBELLE_PUBLIC FROM COURS C INNER JOIN NIVEAU N ON N.ID_NIVEAU = C.ID_NIVEAU INNER JOIN HORAIRE H ON C.ID_HORAIRE = H.ID_HORAIRE INNER JOIN JOURS J ON H.ID_JOUR = J.ID_JOUR INNER JOIN PUBLIC P ON C.ID_PUBLIC = P.ID_PUBLIC';
+            
+            if ($public != -1 && $niveau != -1)
+            {
+                $req .= ' WHERE C.ID_PUBLIC LIKE '.$public . ' AND C.ID_NIVEAU LIKE '.$niveau;
+            }
+            else if ($niveau != -1)
+            {
+                $req .= ' WHERE C.ID_NIVEAU LIKE '.$niveau;
+            }
+            else if ($public != -1)
+            {
+                $req .= ' WHERE C.ID_PUBLIC LIKE '.$public;
+            }
+            
+            return $this->obj->query($req);
+            
         }
     }
     

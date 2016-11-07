@@ -3,16 +3,19 @@
 include_once('../class/autoload.php');
 require_once('../modele/jours.php');
 require_once('../modele/niveaux.php');
+require_once('../modele/public.php');
 
 $pageInitiale = new page_base("TP2 EX1 Formulaire");
 $pageInitiale->script = 'jsCours';
 
 $joursModele = new joursModele();
 $niveauxModele = new niveauxModele();
+$publicModele = new publicModele();
 
 
 $listeJ = $joursModele->getJours(); // récupération via le modèle des jours
 $listeNiv = $niveauxModele->getNiveaux();
+$listPublic = $publicModele->getPublic();
 
 $pageInitiale->corps = '
 <form method="post" action="../controller/cours.php" name="formCours" id="formCours">
@@ -55,6 +58,17 @@ $pageInitiale->corps .= '</select>
                     <td><textarea type="text" id="commentaire" name="commentaire"></textarea></td>
                 </tr>
             </table>
+        </div>
+        <div>
+            <label for="public">Public</label>
+            <select id="public" name="public">';
+
+foreach ($listPublic as $public)
+{
+    $pageInitiale->corps .= '<option value="'.$public->ID_PUBLIC.'">'.$public->LIBELLE_PUBLIC.'</option>';
+}
+
+$pageInitiale->corps .= '</select>
         </div>
     </fieldset>
     <input type="submit" value="Je m\'inscris" name="inscription" id="inscription" />
